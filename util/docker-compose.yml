@@ -1,0 +1,17 @@
+version: '3'
+services:
+  ui:
+    image: scottg489/diff-info-service-ui-build
+    volumes:
+      - ${PWD}/id_rsa:/root/.ssh/id_rsa
+      - ${PWD}/credentials:/root/.aws/credentials
+    depends_on:
+      - server
+  server:
+    image: scottg489/diff-info-service-build
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ${PWD}/id_rsa:/root/.ssh/id_rsa
+      - ${PWD}/credentials:/root/.aws/credentials
+      - ${PWD}/config.json:/root/.docker/config.json
+
