@@ -40,7 +40,7 @@ class DiffInfo extends React.Component {
 
   handleSubmit(event) {
     console.log("'" + this.state.value + "'");
-    fetch('http://localhost:8080/info', {
+    fetch('http://diff-info-service.us-west-2.elasticbeanstalk.com/info', {
       method: 'POST',
       body: this.state.value
     })
