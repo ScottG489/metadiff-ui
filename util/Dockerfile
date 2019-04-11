@@ -8,6 +8,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y awscli
 # Necessary due to "Error: write after end" bug. Remove once this has been fixed (seems to be issue with npm)
 RUN npm install -g npm
 
+RUN apt-get install -y jq
+
 RUN mkdir /root/.ssh
 COPY known_hosts /root/.ssh/known_hosts
 
