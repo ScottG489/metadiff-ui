@@ -40,7 +40,7 @@ class DiffInfo extends React.Component {
 
   handleSubmit(event) {
     console.log("'" + this.state.value + "'");
-    fetch('https://diff-data.com/build?image=scottg489/diff-info:latest', {
+    fetch('https://diff-data.com/build?image=scottg489/diff-info:latest&pull=false', {
       method: 'POST',
       body: this.state.value
     })
