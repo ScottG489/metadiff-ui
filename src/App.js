@@ -44,6 +44,7 @@ const store = createStore(reducers, initialState);
 const App = () => (
   <Provider store={store}>
   <div>
+    <h1>Diff Info</h1>
     <DiffInput />
     <DiffInfo />
   </div>
