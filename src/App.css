@@ -1,9 +1,0 @@
-textarea {
-  height: 200px;
-  width: 200px;
-}
-
-tr:nth-child(even) {
-  background-color: #b3d9ff
-}
-

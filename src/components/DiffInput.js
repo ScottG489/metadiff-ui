@@ -1,6 +1,7 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {setDiffInfo, setDiffInputText} from '../actions'
+import 'bootstrap'
 
 let DiffInput = () => {
   const dispatch = useDispatch()
@@ -8,12 +9,14 @@ let DiffInput = () => {
   let input;
 
   return (
-    <div className="diff-info">
-      <form className="text" onSubmit={
-        async (event) =>
-          dispatch(setDiffInfo(await submitDiffInputText(event, input)))
-      }>
+    <form onSubmit={
+      async (event) =>
+        dispatch(setDiffInfo(await submitDiffInputText(event, input)))
+    }>
+      <div className="form-group">
         <textarea
+          className="form-control"
+          rows="10"
           value={text}
 
           ref={node => {
@@ -22,9 +25,11 @@ let DiffInput = () => {
 
           onChange={() => dispatch(setDiffInputText(input.value))}
         />
-        <input type="submit" value="Submit"/>
-      </form>
-    </div>
+      </div>
+      <div className="form-group">
+        <input className="form-control" type="submit" value="Submit"/>
+      </div>
+    </form>
   )
 };
 

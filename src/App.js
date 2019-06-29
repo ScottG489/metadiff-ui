@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import reducers from './reducers'
@@ -43,11 +42,23 @@ const store = createStore(reducers, initialState);
 
 const App = () => (
   <Provider store={store}>
-  <div>
-    <h1>Diff Info</h1>
-    <DiffInput />
-    <DiffInfo />
-  </div>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-auto">
+          <h1>Diff Info</h1>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <DiffInput/>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col">
+          <DiffInfo/>
+        </div>
+      </div>
+    </div>
   </Provider>
 );
 
