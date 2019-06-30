@@ -1,12 +1,13 @@
 import React from 'react';
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import reducers from './reducers'
-import DiffInput from './components/DiffInput'
-import DiffInfo from "./components/DiffInfo";
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from './reducers';
+import DiffInputContainer from './components/DiffInputContainer';
+import DiffInfoContainer from './components/DiffInfoContainer';
 
 let initialState = {
-  diffInputText: 'diff --git a/.gitignore b/.gitignore\n' +
+  diffInputText:
+    'diff --git a/.gitignore b/.gitignore\n' +
     'index feb3e1f..5835ba8 100644\n' +
     '--- a/.gitignore\n' +
     '+++ b/.gitignore\n' +
@@ -19,26 +20,26 @@ let initialState = {
     ' *.ipr\n' +
     ' *.iws',
   diffInfo: {
-    toFile: "",
-    fromFile: "",
-    fileStatus: "",
-    addedFile: "",
-    modifiedFile: "",
-    removedFile: "",
-    renamed: "",
-    binary: "",
-    mode: "",
-    oldMode: "",
-    checksumBefore: "",
-    checksumAfter: "",
-    copied: "",
-    similarityIndex: "",
-    disimilarityIndex: "",
-    rawDiff: "",
-  }
+    toFile: '',
+    fromFile: '',
+    fileStatus: '',
+    addedFile: '',
+    modifiedFile: '',
+    removedFile: '',
+    renamed: '',
+    binary: '',
+    mode: '',
+    oldMode: '',
+    checksumBefore: '',
+    checksumAfter: '',
+    copied: '',
+    similarityIndex: '',
+    disimilarityIndex: '',
+    rawDiff: '',
+  },
 };
 
-const store = createStore(reducers, initialState);
+export const store = createStore(reducers, initialState);
 
 const App = () => (
   <Provider store={store}>
@@ -50,12 +51,12 @@ const App = () => (
       </div>
       <div className="row">
         <div className="col">
-          <DiffInput/>
+          <DiffInputContainer />
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <DiffInfo/>
+          <DiffInfoContainer />
         </div>
       </div>
     </div>

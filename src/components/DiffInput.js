@@ -1,52 +1,35 @@
-import React from 'react';
-import {useDispatch, useSelector} from 'react-redux'
-import {setDiffInfo, setDiffInputText} from '../actions'
-import 'bootstrap'
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import 'bootstrap';
 
-let DiffInput = () => {
-  const dispatch = useDispatch()
-  const text = useSelector(state => state.diffInputText)
-  let input;
-
+let DiffInput = ({ initialInput, handleChange, handleSubmit }) => {
+  const [input, setInput] = useState(initialInput);
   return (
-    <form onSubmit={
-      async (event) =>
-        dispatch(setDiffInfo(await submitDiffInputText(event, input)))
-    }>
+    // eslint-disable-next-line no-restricted-globals
+    <form onSubmit={event => handleSubmit(event, input)}>
       <div className="form-group">
         <textarea
           className="form-control"
           rows="10"
-          value={text}
-
-          ref={node => {
-            input = node
+          value={input}
+          onChange={event => {
+            const inputValue = event.target.value;
+            setInput(inputValue);
+            handleChange(inputValue);
           }}
-
-          onChange={() => dispatch(setDiffInputText(input.value))}
         />
       </div>
       <div className="form-group">
-        <input className="form-control" type="submit" value="Submit"/>
+        <input className="form-control" type="submit" value="Submit" />
       </div>
     </form>
-  )
+  );
 };
 
-let submitDiffInputText = async (event, input) => {
-  event.preventDefault();
-  console.log("'" + input.value + "'");
-  let foo = await fetch('https://diff-data.com/build?image=scottg489/diff-info:latest&pull=false', {
-    method: 'POST',
-    body: input.value
-  })
-    .then(response => {
-      return response.json()
-    })
-    .catch(reason => console.log(reason));
-
-  console.log(foo)
-  return foo;
+DiffInput.propTypes = {
+  initialInput: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
 };
 
-export default DiffInput
+export default DiffInput;
