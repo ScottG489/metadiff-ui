@@ -11,7 +11,3 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build and deploy
       run: ./build.sh ${{ secrets.ID_RSA_CONTENTS_BASE64 }} ${{ secrets.AWS_CREDENTIALS_CONTENTS_BASE64 }}
-      env:
-        GIT_REPO_URL: 'git@github.com:ScottG489/diff-info-service-ui-build.git'
-        RELATIVE_SUB_DIR: '.'
-        DOCKER_IMAGE_NAME: 'scottg489/diff-info-service-ui-build:latest'
