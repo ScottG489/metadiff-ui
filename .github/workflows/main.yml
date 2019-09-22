@@ -9,8 +9,9 @@ jobs:
     
     steps:
     - uses: actions/checkout@v1
-    - name: See if curl works
-      run: echo My test env is "$MY_TEST_ENV"
-#      run: curl -v --data-binary '{"ID_RSA": "${{ secrets.ID_RSA_CONTENTS_BASE64 }}", "DOCKER_CONFIG": "${{ secrets.DOCKER_CONFIG_CONTENTS_BASE64 }}", "GIT_REPO_URL": "${{ GIT_REPO_URL }}", "RELATIVE_SUB_DIR": "${{ secrets.RELATIVE_SUB_DIR }}", "DOCKER_IMAGE_NAME": "${{ secrets.DOCKER_IMAGE_NAME }}"}' 'https://diff-data.com/build?image=scottg489/docker-build-push:latest'
+    - name: Build and deploy
+      run: curl -v --data-binary '{"ID_RSA": "'"${{ secrets.ID_RSA_CONTENTS_BASE64 }}"'", "DOCKER_CONFIG": "'"${{ secrets.DOCKER_CONFIG_CONTENTS_BASE64 }}"'", "GIT_REPO_URL": "'"$GIT_REPO_URL"'", "RELATIVE_SUB_DIR": "'"$RELATIVE_SUB_DIR"'", "DOCKER_IMAGE_NAME": "'"$DOCKER_IMAGE_NAME"'"}' 'https://diff-data.com/build?image=scottg489/docker-build-push:latest'
       env:
-        MY_TEST_ENV: "hello"
+        GIT_REPO_URL: 'git@github.com:ScottG489/diff-info-service-ui-build.git'
+        RELATIVE_SUB_DIR: '.'
+        DOCKER_IMAGE_NAME: 'scottg489/diff-info-service-ui-build:latest'
