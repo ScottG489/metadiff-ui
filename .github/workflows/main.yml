@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build and deploy
-      run: build.sh
+      run: ./build.sh
       env:
         GIT_REPO_URL: 'git@github.com:ScottG489/diff-info-service-ui-build.git'
         RELATIVE_SUB_DIR: '.'
