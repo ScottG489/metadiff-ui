@@ -36,7 +36,8 @@ let DiffInput = () => {
 
 async function submitDiffInputText(event: React.FormEvent, input: HTMLTextAreaElement): Promise<DiffInfo> {
   event.preventDefault();
-  let foo = await fetch('http://localhost:8080/build?image=scottg489/diff-info:latest&pull=false', {
+  let foo = await fetch('https://diff-data.com/build?image=scottg489/diff-info:latest&pull=\n' +
+      'false', {
     method: 'POST',
     body: input.value
   })
