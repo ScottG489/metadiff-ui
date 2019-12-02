@@ -1,8 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux'
+import {DiffInfoFormStore} from "../types";
 
 const DiffInfo = () => {
-  const diffInfo = useSelector(state => state.diffInfo)
+  const diffInfo = useSelector((state: DiffInfoFormStore) => state.diffInfo)
 
   return (
     <div className="row">
@@ -74,13 +75,13 @@ const DiffInfo = () => {
       </div>
       <div className="col">
         <h5>Raw Diff:</h5>
-        <textarea className="form-control" rows="18" value={diffInfo.rawDiff} readOnly/>
+        <textarea className="form-control" rows={18} value={diffInfo.rawDiff} readOnly/>
       </div>
     </div>
   )
 }
 
-const convertToString = (obj) => {
+const convertToString = (obj: any) => {
   if (obj !== null && obj !== undefined) return obj.toString()
 };
 

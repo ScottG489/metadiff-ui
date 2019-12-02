@@ -2,24 +2,25 @@ import React from 'react';
 import {useDispatch, useSelector} from 'react-redux'
 import {setDiffInfo, setDiffInputText} from '../actions'
 import 'bootstrap'
+import {DiffInfo, DiffInfoFormStore} from "../types";
 
 let DiffInput = () => {
   const dispatch = useDispatch()
-  const text = useSelector(state => state.diffInputText)
-  let input;
+  const text = useSelector((state: DiffInfoFormStore) => state.diffInputText)
+  let input: HTMLTextAreaElement
 
   return (
     <form onSubmit={
-      async (event) =>
+      async (event: React.FormEvent) =>
         dispatch(setDiffInfo(await submitDiffInputText(event, input)))
     }>
       <div className="form-group">
         <textarea
           className="form-control"
-          rows="10"
+          rows={10}
           value={text}
 
-          ref={node => {
+          ref={(node: any) => {
             input = node
           }}
 
@@ -33,20 +34,18 @@ let DiffInput = () => {
   )
 };
 
-let submitDiffInputText = async (event, input) => {
+async function submitDiffInputText(event: React.FormEvent, input: HTMLTextAreaElement): Promise<DiffInfo> {
   event.preventDefault();
-  console.log("'" + input.value + "'");
-  let foo = await fetch('https://diff-data.com/build?image=scottg489/diff-info:latest&pull=false', {
+  let foo = await fetch('http://localhost:8080/build?image=scottg489/diff-info:latest&pull=false', {
     method: 'POST',
     body: input.value
   })
-    .then(response => {
+    .then(async response => {
       return response.json()
     })
-    .catch(reason => console.log(reason));
+    .catch(reason => console.log("Failure reason: " + reason));
 
-  console.log(foo)
   return foo;
-};
+}
 
 export default DiffInput
