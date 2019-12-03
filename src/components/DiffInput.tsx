@@ -20,7 +20,7 @@ let DiffInput = () => {
           rows={10}
           value={text}
 
-          ref={(node: any) => {
+          ref={(node: HTMLTextAreaElement) => {
             input = node
           }}
 

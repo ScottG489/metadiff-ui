@@ -1,31 +1,17 @@
-import {SetDiff} from '../actions';
 import {DiffInfoFormStore} from '../types';
-import {SET_DIFF_INFO, SET_DIFF_INPUT_TEXT} from '../constants';
+import { SetDiffAction, DiffActionType } from '../actions';
 
-export function setDiffReducer(state: DiffInfoFormStore = {} as DiffInfoFormStore, action: SetDiff): DiffInfoFormStore {
+export function setDiffReducer(
+    state: DiffInfoFormStore = {} as DiffInfoFormStore,
+    action: SetDiffAction<any>
+    ): DiffInfoFormStore {
+
     switch (action.type) {
-        case SET_DIFF_INPUT_TEXT:
-            return { ...state, diffInputText: action.text };
-        case SET_DIFF_INFO:
+        case DiffActionType.SET_DIFF_INPUT_TEXT:
+            return { ...state, diffInputText: action.payload };
+        case DiffActionType.SET_DIFF_INFO:
             return {
-                ...state, diffInfo: {
-                    toFile: action.toFile,
-                    fromFile: action.fromFile,
-                    fileStatus: action.fileStatus,
-                    addedFile: action.addedFile,
-                    modifiedFile: action.modifiedFile,
-                    removedFile: action.removedFile,
-                    renamed: action.renamed,
-                    binary: action.binary,
-                    mode: action.mode,
-                    oldMode: action.oldMode,
-                    checksumBefore: action.checksumBefore,
-                    checksumAfter: action.checksumAfter,
-                    copied: action.copied,
-                    similarityIndex: action.similarityIndex,
-                    disimilarityIndex: action.disimilarityIndex,
-                    rawDiff: action.rawDiff
-                }
+                ...state, diffInfo: action.payload
             };
     }
     return state;
