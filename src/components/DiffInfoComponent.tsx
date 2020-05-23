@@ -1,10 +1,11 @@
-import React from 'react';
-import {useSelector} from 'react-redux'
-import {DiffInfoFormStore} from "../types";
+import React, {FC} from 'react';
+import {DiffInfo} from "../types";
 
-const DiffInfo = () => {
-  const diffInfo = useSelector((state: DiffInfoFormStore) => state.diffInfo)
+export interface DiffInfoProps {
+    diffInfo: DiffInfo
+}
 
+const DiffInfoComponent: FC<DiffInfoProps> = ({diffInfo}) => {
   return (
     <div className="row">
       <div className="col">
@@ -85,4 +86,4 @@ const convertToString = (obj: any) => {
   if (obj !== null && obj !== undefined) return obj.toString()
 };
 
-export default DiffInfo
+export default DiffInfoComponent

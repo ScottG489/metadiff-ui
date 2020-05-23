@@ -1,10 +1,7 @@
-import React from 'react';
-import {Provider} from 'react-redux'
-import {createStore} from 'redux'
-import {setDiffReducer} from './reducers'
-import {DiffInfoFormStore} from './types'
-import DiffInputComponent from './components/DiffInput'
-import DiffInfoComponent from "./components/DiffInfo";
+import React, {useState} from 'react';
+import {DiffInfo, DiffInfoFormStore} from './types'
+import DiffInputComponent from './components/DiffInputComponent'
+import DiffInfoComponent from "./components/DiffInfoComponent";
 
 const init: DiffInfoFormStore = {
     diffInputText: 'diff --git a/.gitignore b/.gitignore\n' +
@@ -39,10 +36,14 @@ const init: DiffInfoFormStore = {
     }
 };
 
-const store = createStore<DiffInfoFormStore, any, any, any>(setDiffReducer, init);
+const App = () => {
+    const [state, setState] = useState(init);
 
-const App = () => (
-    <Provider store={store}>
+    const refresh = (s: DiffInfo) => {
+        setState({diffInputText: state.diffInputText, diffInfo: s});
+    };
+
+    return (
         <div className="container">
             <div className="row justify-content-center">
                 <div className="col-auto">
@@ -51,16 +52,16 @@ const App = () => (
             </div>
             <div className="row">
                 <div className="col">
-                    <DiffInputComponent/>
+                    <DiffInputComponent diffInput={state.diffInputText} refresh={refresh}/>
                 </div>
             </div>
             <div className="row">
                 <div className="col">
-                    <DiffInfoComponent/>
+                    <DiffInfoComponent diffInfo={state.diffInfo}/>
                 </div>
             </div>
         </div>
-    </Provider>
-);
+    )
+};
 
 export default App;
