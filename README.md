@@ -1,4 +1,5 @@
 # Diff Info Service UI
+![CI](https://github.com/ScottG489/diff-info-service-ui/workflows/CI/badge.svg)
 
 ## Building and deploying
 You will need valid credentials to clone the repository and to deploy to AWS on S3
