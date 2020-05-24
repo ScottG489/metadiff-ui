@@ -48,7 +48,7 @@ async function submitDiffInputText (
     {
       method: 'POST',
       body: input,
-    }
+    },
   )
     .then(async (response) => {
       return response.json()
