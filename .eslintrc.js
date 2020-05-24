@@ -24,13 +24,13 @@ module.exports = {
   settings: {
     react: {
       version: 'detect',
-    }
+    },
   },
   plugins: ['react', '@typescript-eslint', 'prettier'],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'comma-dangle': ['error', 'always-multiline'],
-    'quotes': ['error', 'single']
-  }
+    quotes: ['error', 'single'],
+  },
 }
