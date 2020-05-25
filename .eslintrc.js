@@ -8,6 +8,8 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard',
+    "plugin:testing-library/recommended",
+    "plugin:testing-library/react",
   ],
   globals: {
     Atomics: 'readonly',
@@ -26,7 +28,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library'],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],

@@ -12,64 +12,64 @@ const DiffInfoComponent: FC<DiffInfoProps> = ({ diffInfo }: DiffInfoProps) => {
         <table className="table table-sm table-striped">
           <tbody>
             <tr>
-              <th>To file:</th>
-              <th>{diffInfo.toFile}</th>
+              <td>To File:</td>
+              <td>{diffInfo.toFile}</td>
             </tr>
             <tr>
-              <th>From file:</th>
-              <th>{diffInfo.fromFile}</th>
+              <td>From File:</td>
+              <td>{diffInfo.fromFile}</td>
             </tr>
             <tr>
-              <th>File status:</th>
-              <th>{diffInfo.fileStatus}</th>
+              <td>File Status:</td>
+              <td>{diffInfo.fileStatus}</td>
             </tr>
             <tr>
-              <th>Is Added File:</th>
-              <th>{convertToString(diffInfo.addedFile)}</th>
+              <td>Is Added File:</td>
+              <td>{convertToString(diffInfo.addedFile)}</td>
             </tr>
             <tr>
-              <th>Is Modified File:</th>
-              <th>{convertToString(diffInfo.modifiedFile)}</th>
+              <td>Is Modified File:</td>
+              <td>{convertToString(diffInfo.modifiedFile)}</td>
             </tr>
             <tr>
-              <th>Is Removed File:</th>
-              <th>{convertToString(diffInfo.removedFile)}</th>
+              <td>Is Removed File:</td>
+              <td>{convertToString(diffInfo.removedFile)}</td>
             </tr>
             <tr>
-              <th>Is Renamed file:</th>
-              <th>{convertToString(diffInfo.renamed)}</th>
+              <td>Is Renamed File:</td>
+              <td>{convertToString(diffInfo.renamed)}</td>
             </tr>
             <tr>
-              <th>Is Binary File:</th>
-              <th>{convertToString(diffInfo.binary)}</th>
+              <td>Is Binary File:</td>
+              <td>{convertToString(diffInfo.binary)}</td>
             </tr>
             <tr>
-              <th>Mode:</th>
-              <th>{diffInfo.mode}</th>
+              <td>Mode:</td>
+              <td>{diffInfo.mode}</td>
             </tr>
             <tr>
-              <th>Old Mode:</th>
-              <th>{diffInfo.oldMode}</th>
+              <td>Old Mode:</td>
+              <td>{diffInfo.oldMode}</td>
             </tr>
             <tr>
-              <th>Checksum Before:</th>
-              <th>{diffInfo.checksumBefore}</th>
+              <td>Checksum Before:</td>
+              <td>{diffInfo.checksumBefore}</td>
             </tr>
             <tr>
-              <th>Checksum After:</th>
-              <th>{diffInfo.checksumAfter}</th>
+              <td>Checksum After:</td>
+              <td>{diffInfo.checksumAfter}</td>
             </tr>
             <tr>
-              <th>Is Copied File:</th>
-              <th>{convertToString(diffInfo.copied)}</th>
+              <td>Is Copied File:</td>
+              <td>{convertToString(diffInfo.copied)}</td>
             </tr>
             <tr>
-              <th>Similarity Index:</th>
-              <th>{diffInfo.similarityIndex}</th>
+              <td>Similarity Index:</td>
+              <td>{diffInfo.similarityIndex}</td>
             </tr>
             <tr>
-              <th>Disimilarity Index:</th>
-              <th>{diffInfo.disimilarityIndex}</th>
+              <td>Disimilarity Index:</td>
+              <td>{diffInfo.disimilarityIndex}</td>
             </tr>
           </tbody>
         </table>
