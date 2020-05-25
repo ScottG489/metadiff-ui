@@ -26,24 +26,21 @@ test('Displays appropriate values', async () => {
 
   render(<DiffInfoComponent diffInfo={diffInfo}/>)
 
-  expect(getCellNextSibling('To File:')).toHaveTextContent('to file value')
-  expect(getCellNextSibling('From File:')).toHaveTextContent('from file value')
-  expect(getCellNextSibling('File Status:')).toHaveTextContent('file status value')
-  expect(getCellNextSibling('Is Added File:')).toHaveTextContent('is added file value')
-  expect(getCellNextSibling('Is Modified File:')).toHaveTextContent('is modified file value')
-  expect(getCellNextSibling('Is Removed File:')).toHaveTextContent('is removed file value')
-  expect(getCellNextSibling('Is Renamed File:')).toHaveTextContent('is renamed file value')
-  expect(getCellNextSibling('Is Binary File:')).toHaveTextContent('is binary file value')
-  expect(getCellNextSibling('Mode:')).toHaveTextContent('mode value')
-  expect(getCellNextSibling('Old Mode:')).toHaveTextContent('old mode value')
-  expect(getCellNextSibling('Checksum Before:')).toHaveTextContent('checksum before value')
-  expect(getCellNextSibling('Checksum After:')).toHaveTextContent('checksum after value')
-  expect(getCellNextSibling('Is Copied File:')).toHaveTextContent('is copied value')
-  expect(getCellNextSibling('Similarity Index:')).toHaveTextContent('similarity index value')
-  expect(getCellNextSibling('Disimilarity Index:')).toHaveTextContent('disimilarity index value')
+  expect(screen.getByRole('row', {name: 'To File: to file value'}))
+  expect(screen.getByRole('row', {name: 'From File: from file value'}))
+  expect(screen.getByRole('row', {name: 'File Status: file status value'}))
+  expect(screen.getByRole('row', {name: 'Is Added File: is added file value'}))
+  expect(screen.getByRole('row', {name: 'Is Modified File: is modified file value'}))
+  expect(screen.getByRole('row', {name: 'Is Removed File: is removed file value'}))
+  expect(screen.getByRole('row', {name: 'Is Renamed File: is renamed file value'}))
+  expect(screen.getByRole('row', {name: 'Is Binary File: is binary file value'}))
+  expect(screen.getByRole('row', {name: 'Mode: mode value'}))
+  expect(screen.getByRole('row', {name: 'Old Mode: old mode value'}))
+  expect(screen.getByRole('row', {name: 'Checksum Before: checksum before value'}))
+  expect(screen.getByRole('row', {name: 'Checksum After: checksum after value'}))
+  expect(screen.getByRole('row', {name: 'Is Copied File: is copied value'}))
+  expect(screen.getByRole('row', {name: 'Similarity Index: similarity index value'}))
+  expect(screen.getByRole('row', {name: 'Disimilarity Index: disimilarity index value'}))
+  // TODO: Better way to do this? Maybe the HTML shouldn't be a disabled text area?
   expect(screen.getByRole('heading', {name: 'Raw Diff:'}).nextSibling).toHaveTextContent('raw diff value');
 })
-
-function getCellNextSibling(cellName: string) {
-  return screen.getByRole('cell', {name: cellName}).nextSibling;
-}
