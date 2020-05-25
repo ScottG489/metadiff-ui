@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { DiffInfo } from '../types'
+import './DiffInfoComponent.css'
 
 export interface DiffInfoProps {
   diffInfo: DiffInfo;
