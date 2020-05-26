@@ -14,9 +14,7 @@ const DiffInputComponent: FC<DiffInputProps> = ({
   const [textArea, setTextArea] = useState(diffInput)
   const [postData, setPostData] = useState('')
 
-  useEffect(() => {
-    fetchDiffInfo()
-  }, [postData])
+  useEffect(doUseEffect, [postData])
 
   return (
     <form
@@ -39,6 +37,12 @@ const DiffInputComponent: FC<DiffInputProps> = ({
       </div>
     </form>
   )
+
+  function doUseEffect () {
+    if (postData) {
+      fetchDiffInfo()
+    }
+  }
 
   function fetchDiffInfo () {
     fetch(
