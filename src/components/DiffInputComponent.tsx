@@ -33,7 +33,7 @@ const DiffInputComponent: FC<DiffInputProps> = ({
         />
       </div>
       <div className="form-group">
-        <input className="form-control" type="submit" value="Submit" />
+        <button className="form-control btn-outline-primary">YEET</button>
       </div>
     </form>
   )
