@@ -40,7 +40,7 @@ const init: DiffInfoFormStore = {
 const App = () => {
   const [state, setState] = useState(init)
 
-  const refresh = (s: DiffInfo) => {
+  const updateDiffInfo = (s: DiffInfo) => {
     setState({ diffInputText: state.diffInputText, diffInfo: s })
   }
 
@@ -55,7 +55,7 @@ const App = () => {
         <div className="col">
           <DiffInputComponent
             diffInput={state.diffInputText}
-            refresh={refresh}
+            updateDiffInfo={updateDiffInfo}
           />
         </div>
       </div>

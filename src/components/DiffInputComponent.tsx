@@ -4,12 +4,12 @@ import { DiffInfo } from '../types'
 
 interface DiffInputProps {
   diffInput: string;
-  refresh: (s: DiffInfo) => void;
+  updateDiffInfo: (s: DiffInfo) => void;
 }
 
 const DiffInputComponent: FC<DiffInputProps> = ({
   diffInput,
-  refresh,
+  updateDiffInfo,
 }: DiffInputProps) => {
   const [textArea, setTextArea] = useState(diffInput)
   const [postData, setPostData] = useState('')
@@ -55,7 +55,7 @@ const DiffInputComponent: FC<DiffInputProps> = ({
     )
       .then(async (response) => {
         const diffInfo: DiffInfo = await response.json()
-        refresh(diffInfo)
+        updateDiffInfo(diffInfo)
       })
       .catch((reason) => console.log('Failure reason: ' + reason))
   }
