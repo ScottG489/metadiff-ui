@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import 'bootstrap'
 import { DiffInfo } from '../types'
 
@@ -12,12 +12,16 @@ const DiffInputComponent: FC<DiffInputProps> = ({
   refresh,
 }: DiffInputProps) => {
   const [textArea, setTextArea] = useState(diffInput)
+  const [postData, setPostData] = useState('')
+
+  useEffect(() => {
+    fetchDiffInfo()
+  }, [postData])
 
   return (
     <form
       onSubmit={async (event: React.FormEvent) => {
-        const diffInfo = await submitDiffInputText(event, textArea)
-        refresh(diffInfo)
+        await submitDiffInputText(event, textArea)
       }}
     >
       <div className="form-group">
@@ -35,25 +39,30 @@ const DiffInputComponent: FC<DiffInputProps> = ({
       </div>
     </form>
   )
-}
 
-async function submitDiffInputText (
-  event: React.FormEvent,
-  input: string,
-): Promise<DiffInfo> {
-  event.preventDefault()
-  return await fetch(
-    'http://simple-ci.com:8080/build?image=scottg489/diff-info:latest&pull=\n' +
+  function fetchDiffInfo () {
+    fetch(
+      'http://simple-ci.com:8080/build?image=scottg489/diff-info:latest&pull=\n' +
       'false',
-    {
-      method: 'POST',
-      body: input,
-    },
-  )
-    .then(async (response) => {
-      return response.json()
-    })
-    .catch((reason) => console.log('Failure reason: ' + reason))
+      {
+        method: 'POST',
+        body: postData,
+      },
+    )
+      .then(async (response) => {
+        const diffInfo: DiffInfo = await response.json()
+        refresh(diffInfo)
+      })
+      .catch((reason) => console.log('Failure reason: ' + reason))
+  }
+
+  function submitDiffInputText (
+    event: React.FormEvent,
+    input: string,
+  ) {
+    event.preventDefault()
+    setPostData(input)
+  }
 }
 
 export default DiffInputComponent
