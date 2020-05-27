@@ -44,6 +44,22 @@ const App = () => {
     setState({ diffInputText: state.diffInputText, diffInfo: s })
   }
 
+  function fetchDiffInfo (postData: string) {
+    fetch(
+      'http://simple-ci.com:8080/build?image=scottg489/diff-info:latest&pull=\n' +
+      'false',
+      {
+        method: 'POST',
+        body: postData,
+      },
+    )
+      .then(async (response) => {
+        const diffInfo: DiffInfo = await response.json()
+        updateDiffInfo(diffInfo)
+      })
+      .catch((reason) => console.log('Failure reason: ' + reason))
+  }
+
   return (
     <div className="container">
       <div className="row justify-content-center">
@@ -55,7 +71,7 @@ const App = () => {
         <div className="col">
           <DiffInputComponent
             diffInput={state.diffInputText}
-            updateDiffInfo={updateDiffInfo}
+            fetchDiffInfo={fetchDiffInfo}
           />
         </div>
       </div>
