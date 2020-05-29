@@ -38,10 +38,15 @@ const init: DiffInfoFormStore = {
 }
 
 const App = () => {
-  const [state, setState] = useState(init)
+  const [diffInfo, setDiffInfo] = useState(init.diffInfo)
+  const [diffInputText, setDiffInput] = useState(init.diffInputText)
 
   const updateDiffInfo = (s: DiffInfo) => {
-    setState({ diffInputText: state.diffInputText, diffInfo: s })
+    setDiffInfo(s)
+  }
+
+  const updateDiffInput = (s: string) => {
+    setDiffInput(s)
   }
 
   function fetchDiffInfo (postData: string) {
@@ -70,14 +75,15 @@ const App = () => {
       <div className="row">
         <div className="col">
           <DiffInputComponent
-            diffInput={state.diffInputText}
+            diffInput={diffInputText}
+            updateDiffInput={updateDiffInput}
             fetchDiffInfo={fetchDiffInfo}
           />
         </div>
       </div>
       <div className="row">
         <div className="col">
-          <DiffInfoComponent diffInfo={state.diffInfo} />
+          <DiffInfoComponent diffInfo={diffInfo} />
         </div>
       </div>
     </div>

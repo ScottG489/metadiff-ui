@@ -3,14 +3,15 @@ import 'bootstrap'
 
 interface DiffInputProps {
   diffInput: string
+  updateDiffInput: (s: string) => void
   fetchDiffInfo: (postData: string) => void
 }
 
 const DiffInputComponent: FC<DiffInputProps> = ({
   diffInput,
+  updateDiffInput,
   fetchDiffInfo,
 }: DiffInputProps) => {
-  const [textArea, setTextArea] = useState(diffInput)
   const [postData, setPostData] = useState('')
 
   useEffect(doUseEffect, [postData])
@@ -18,16 +19,16 @@ const DiffInputComponent: FC<DiffInputProps> = ({
   return (
     <form
       onSubmit={async (event: React.FormEvent) => {
-        await submitDiffInputText(event, textArea)
+        await submitDiffInputText(event, diffInput)
       }}
     >
       <div className="form-group">
         <textarea
           className="form-control"
           rows={10}
-          value={textArea}
+          value={diffInput}
           onChange={(event) => {
-            setTextArea(event.target.value)
+            updateDiffInput(event.target.value)
           }}
         />
       </div>
