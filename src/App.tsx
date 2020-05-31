@@ -49,20 +49,20 @@ const App = () => {
     setDiffInput(s)
   }
 
-  function fetchDiffInfo (postData: string) {
-    fetch(
-      'http://simple-ci.com:8080/build?image=scottg489/diff-info:latest&pull=\n' +
-      'false',
-      {
-        method: 'POST',
-        body: postData,
-      },
-    )
-      .then(async (response) => {
-        const diffInfo: DiffInfo = await response.json()
-        updateDiffInfo(diffInfo)
-      })
-      .catch((reason) => console.log('Failure reason: ' + reason))
+  async function fetchDiffInfo (postData: string) {
+    try {
+      const response = await fetch(
+          'http://simple-ci.com:8080/build?image=scottg489/diff-info:latest&pull=false',
+          {
+            method: 'POST',
+            body: postData,
+          },
+      )
+      const diffInfo: DiffInfo = await response.json()
+      updateDiffInfo(diffInfo)
+    } catch (e) {
+      console.log(`Failure fetching diff info with diff input: ${e.message}`)
+    }
   }
 
   return (
