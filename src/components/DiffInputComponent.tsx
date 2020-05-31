@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import 'bootstrap'
 
 interface DiffInputProps {
@@ -12,14 +12,10 @@ const DiffInputComponent: FC<DiffInputProps> = ({
   updateDiffInput,
   fetchDiffInfo,
 }: DiffInputProps) => {
-  const [postData, setPostData] = useState('')
-
-  useEffect(doUseEffect, [postData])
-
   return (
     <form
       onSubmit={async (event: React.FormEvent) => {
-        await submitDiffInputText(event, diffInput)
+        await submitDiffInputText(event)
       }}
     >
       <div className="form-group">
@@ -38,18 +34,9 @@ const DiffInputComponent: FC<DiffInputProps> = ({
     </form>
   )
 
-  function doUseEffect () {
-    if (postData) {
-      fetchDiffInfo(postData)
-    }
-  }
-
-  function submitDiffInputText (
-    event: React.FormEvent,
-    input: string,
-  ) {
+  async function submitDiffInputText (event: React.FormEvent) {
     event.preventDefault()
-    setPostData(input)
+    await fetchDiffInfo(diffInput)
   }
 }
 
