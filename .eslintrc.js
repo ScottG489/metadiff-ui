@@ -10,6 +10,7 @@ module.exports = {
     'standard',
     "plugin:testing-library/recommended",
     "plugin:testing-library/react",
+    "plugin:cypress/recommended",
   ],
   globals: {
     Atomics: 'readonly',
@@ -28,7 +29,7 @@ module.exports = {
       version: 'detect',
     },
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library', 'cypress'],
   rules: {
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
