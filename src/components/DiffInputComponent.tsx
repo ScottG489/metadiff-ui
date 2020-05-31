@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, {FC, useState} from 'react'
 import 'bootstrap'
 
 interface DiffInputProps {
@@ -12,6 +12,9 @@ const DiffInputComponent: FC<DiffInputProps> = ({
   updateDiffInput,
   fetchDiffInfo,
 }: DiffInputProps) => {
+  const baseSubmitButtonText = 'Yeet'
+  const [submitButtonText, setSubmitButtonText] = useState(baseSubmitButtonText)
+
   return (
     <form
       onSubmit={async (event: React.FormEvent) => {
@@ -29,14 +32,16 @@ const DiffInputComponent: FC<DiffInputProps> = ({
         />
       </div>
       <div className="form-group">
-        <button className="form-control btn-outline-primary">YEET</button>
+        <button className="form-control btn-outline-primary">{submitButtonText}</button>
       </div>
     </form>
   )
 
   async function submitDiffInputText (event: React.FormEvent) {
     event.preventDefault()
+    setSubmitButtonText('Yeeting...')
     await fetchDiffInfo(diffInput)
+    setSubmitButtonText(baseSubmitButtonText)
   }
 }
 
