@@ -35,6 +35,7 @@ COPY config /root/.aws/config
 
 RUN mkdir -p /opt/build
 COPY run.sh /opt/build/run.sh
+COPY run-test.sh /opt/build/run-test.sh
 COPY build_functions.sh /opt/build/build_functions.sh
 
 WORKDIR /opt/build

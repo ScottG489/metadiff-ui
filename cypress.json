@@ -1,4 +1,4 @@
 {
-  "baseUrl": "http://diff-data.com.s3-website-us-west-2.amazonaws.com",
+  "baseUrl": "http://localhost:3000",
   "defaultCommandTimeout": 15000
 }

@@ -64,12 +64,37 @@ tf_apply() {
 
 ui_deploy() {
   local ROOT_DIR
-  local DOMAIN_NAME
+  local RELATIVE_PATH_TO_TF_DIR
+  local BUCKET_NAME
 
   readonly ROOT_DIR=$(get_git_root_dir)
-  readonly DOMAIN_NAME=$1
+  readonly RELATIVE_PATH_TO_TF_DIR=$1
+
+  cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
+
+  readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.root_module.resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.bucket')
 
   cd "$ROOT_DIR"
 
-  aws s3 sync build/ s3://"$DOMAIN_NAME"
+  aws s3 sync build/ s3://"$BUCKET_NAME"
+}
+
+run_tests() {
+  local ROOT_DIR
+  local RELATIVE_PATH_TO_TF_DIR
+  local WEBSITE_URL
+  local CYPRESS_BASE_URL
+
+  readonly RELATIVE_PATH_TO_TF_DIR=$1
+  readonly ROOT_DIR=$(get_git_root_dir)
+
+  cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
+
+  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.root_module.resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.website_endpoint')
+  readonly CYPRESS_BASE_URL="http://$WEBSITE_URL"
+  export CYPRESS_BASE_URL
+
+  cd "$ROOT_DIR"
+
+  npx cypress run
 }
