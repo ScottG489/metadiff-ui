@@ -22,8 +22,6 @@ tf_backend_init $_TFSTATE_BUCKET_NAME
 
 tf_apply "infra/tf"
 
-setup_nameservers $_DOMAIN_NAME
-
 ui_deploy $_DOMAIN_NAME
 
 # Acceptance testing. Currently running against prod but once we have multiple environments this will point elsewhere

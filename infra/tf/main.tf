@@ -56,3 +56,13 @@ resource "aws_route53_record" "website_record_A_www" {
         evaluate_target_health = false
     }
 }
+
+resource "null_resource" "route53_domain_name_servers" {
+  triggers = {
+    name_servers = aws_route53_zone.website_r53_zone.name_servers
+  }
+
+  provisioner "local-exec" {
+    command = "./scripts/update_r53_zone_nameservers.sh ${aws_route53_zone.website_r53_zone.name}"
+  }
+}
