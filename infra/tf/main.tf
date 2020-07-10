@@ -59,7 +59,7 @@ resource "aws_route53_record" "website_record_A_www" {
 
 resource "null_resource" "route53_domain_name_servers" {
   triggers = {
-    name_servers = aws_route53_zone.website_r53_zone.name_servers
+    name_servers = join(",", aws_route53_zone.website_r53_zone.name_servers)
   }
 
   provisioner "local-exec" {
