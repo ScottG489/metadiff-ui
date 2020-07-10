@@ -10,10 +10,10 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "diff_data_com_bucket" {
-  bucket = "diff-data.com"
+resource "aws_s3_bucket" "website_bucket" {
+  bucket = var.website_bucket_name
   acl    = "public-read"
-  policy = file("policy.json")
+  policy = templatefile("policy-template.json.tmpl", { bucket_name: var.website_bucket_name })
   force_destroy = true
 
   website {
@@ -21,37 +21,37 @@ resource "aws_s3_bucket" "diff_data_com_bucket" {
   }
 }
 
-resource "aws_s3_bucket" "www_diff_data_com_bucket" {
-    bucket                      = "www.diff-data.com"
+resource "aws_s3_bucket" "www_website_bucket" {
+    bucket                      = var.www_website_bucket_name
 
     website {
-        redirect_all_requests_to = "diff-data.com"
+        redirect_all_requests_to = aws_s3_bucket.website_bucket.bucket
     }
 }
 
-resource "aws_route53_zone" "diff_data_com_r53_zone" {
-    name         = "diff-data.com."
+resource "aws_route53_zone" "website_r53_zone" {
+    name         = var.website_r53_zone_name
 }
 
-resource "aws_route53_record" "diff_data_com_r53_record_A_top" {
-    zone_id = aws_route53_zone.diff_data_com_r53_zone.id
+resource "aws_route53_record" "website_r53_record_A_top" {
+    zone_id = aws_route53_zone.website_r53_zone.id
     name    = ""
     type    = "A"
 
     alias {
-        zone_id                = aws_s3_bucket.diff_data_com_bucket.hosted_zone_id
+        zone_id                = aws_s3_bucket.website_bucket.hosted_zone_id
         name                   = "s3-website-us-west-2.amazonaws.com"
         evaluate_target_health = false
     }
 }
 
-resource "aws_route53_record" "diff_data_com_r53_record_A_www" {
-    zone_id = aws_route53_zone.diff_data_com_r53_zone.id
+resource "aws_route53_record" "website_record_A_www" {
+    zone_id = aws_route53_zone.website_r53_zone.id
     name    = "www"
     type    = "A"
 
     alias {
-        zone_id                = aws_s3_bucket.www_diff_data_com_bucket.hosted_zone_id
+        zone_id                = aws_s3_bucket.www_website_bucket.hosted_zone_id
         name                   = "s3-website-us-west-2.amazonaws.com"
         evaluate_target_health = false
     }
