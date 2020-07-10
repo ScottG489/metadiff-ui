@@ -13,7 +13,7 @@ terraform {
 resource "aws_s3_bucket" "website_bucket" {
   bucket = var.website_bucket_name
   acl    = "public-read"
-  policy = templatefile("policy-template.json.tmpl", { bucket_name: var.website_bucket_name })
+  policy = templatefile("policy-template.json", { bucket_name: var.website_bucket_name })
   force_destroy = true
 
   website {
