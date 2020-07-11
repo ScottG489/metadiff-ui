@@ -10,59 +10,19 @@ terraform {
   }
 }
 
-resource "aws_s3_bucket" "website_bucket" {
-  bucket = var.website_bucket_name
-  acl    = "public-read"
-  policy = templatefile("policy-template.json", { bucket_name: var.website_bucket_name })
-  force_destroy = true
-
-  website {
-    index_document = "index.html"
-  }
+module "s3_website" {
+  source = "./modules/s3_website"
+  name = var.website_domain_name
 }
 
-resource "aws_s3_bucket" "www_website_bucket" {
-    bucket                      = var.www_website_bucket_name
-
-    website {
-        redirect_all_requests_to = aws_s3_bucket.website_bucket.bucket
-    }
+module "s3_website_route53_zone" {
+  source = "./modules/s3_website_route53_zone"
+  name = module.s3_website.bucket_name
+  s3_website_hosted_zone_id = module.s3_website.website_hosted_zone_id
 }
 
-resource "aws_route53_zone" "website_r53_zone" {
-    name         = var.website_r53_zone_name
-}
-
-resource "aws_route53_record" "website_r53_record_A_top" {
-    zone_id = aws_route53_zone.website_r53_zone.id
-    name    = ""
-    type    = "A"
-
-    alias {
-        zone_id                = aws_s3_bucket.website_bucket.hosted_zone_id
-        name                   = "s3-website-us-west-2.amazonaws.com"
-        evaluate_target_health = false
-    }
-}
-
-resource "aws_route53_record" "website_record_A_www" {
-    zone_id = aws_route53_zone.website_r53_zone.id
-    name    = "www"
-    type    = "A"
-
-    alias {
-        zone_id                = aws_s3_bucket.www_website_bucket.hosted_zone_id
-        name                   = "s3-website-us-west-2.amazonaws.com"
-        evaluate_target_health = false
-    }
-}
-
-resource "null_resource" "route53_domain_name_servers" {
-  triggers = {
-    name_servers = join(",", aws_route53_zone.website_r53_zone.name_servers)
-  }
-
-  provisioner "local-exec" {
-    command = "./scripts/update_r53_zone_nameservers.sh ${aws_route53_zone.website_r53_zone.name} ${join(" ", aws_route53_zone.website_r53_zone.name_servers)}"
-  }
+module "s3_website_route53_domain" {
+  source = "./modules/s3_website_route53_domain"
+  route53_zone_name = module.s3_website_route53_zone.name
+  route53_zone_name_servers = module.s3_website_route53_zone.nameservers
 }
