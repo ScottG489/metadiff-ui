@@ -21,8 +21,8 @@ module "s3_website_route53_zone" {
   s3_website_hosted_zone_id = module.s3_website.website_hosted_zone_id
 }
 
-module "s3_website_route53_domain" {
-  source = "./modules/s3_website_route53_domain"
+module "route53_domain_name_servers" {
+  source = "./modules/route53_domain_name_servers"
   route53_zone_name = module.s3_website_route53_zone.name
   route53_zone_name_servers = module.s3_website_route53_zone.nameservers
 }
