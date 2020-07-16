@@ -52,7 +52,7 @@ const App = () => {
   async function fetchDiffInfo (postData: string) {
     try {
       const response = await fetch(
-        'http://simple-ci.com/build?image=scottg489/diff-info:latest',
+        'http://api.simple-ci.com/build?image=scottg489/diff-info:latest',
         {
           method: 'POST',
           body: postData,
