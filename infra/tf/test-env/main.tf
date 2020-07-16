@@ -2,7 +2,7 @@ provider "aws" {
   region = "us-west-2"
 }
 
-module "diff_data_website_test" {
+module "diff_data_website" {
   source  = "../modules/diff_data_website_core"
   website_domain_name = "${random_id.domain_name_prefix.hex}.com"
 }
