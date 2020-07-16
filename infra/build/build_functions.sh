@@ -73,6 +73,7 @@ ui_deploy() {
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
   readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.outputs.bucket.value')
+  [[ -n $BUCKET_NAME ]]
 
   cd "$ROOT_DIR"
 
@@ -91,6 +92,7 @@ run_tests() {
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
   readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.outputs.bucket_website_endpoint.value')
+  [[ -n $WEBSITE_URL ]]
   readonly CYPRESS_BASE_URL="http://$WEBSITE_URL"
   export CYPRESS_BASE_URL
 
