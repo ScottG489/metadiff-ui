@@ -2,17 +2,9 @@ provider "aws" {
   region = "us-west-2"
 }
 
-module "helpers_s3_website" {
-  source  = "ScottG489/helpers/aws//modules/s3_website"
-  version = "0.0.2"
-  name = "${random_id.domain_name_prefix.hex}.com"
-}
-
-module "helpers_s3_website_route53_zone" {
-  source  = "ScottG489/helpers/aws//modules/s3_website_route53_zone"
-  version = "0.0.2"
-  name = module.helpers_s3_website.bucket_name
-  s3_website_hosted_zone_id = module.helpers_s3_website.website_hosted_zone_id
+module "diff_data_website_test" {
+  source  = "../modules/diff_data_website_core"
+  website_domain_name = "${random_id.domain_name_prefix.hex}.com"
 }
 
 resource "random_id" "domain_name_prefix" {
