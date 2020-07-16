@@ -72,7 +72,7 @@ ui_deploy() {
 
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
-  readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.root_module.child_modules[].resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.bucket')
+  readonly BUCKET_NAME=$(terraform show --json | jq --raw-output '.values.root_module.child_modules[].child_modules[].resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.bucket')
 
   cd "$ROOT_DIR"
 
@@ -90,7 +90,7 @@ run_tests() {
 
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
-  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.root_module.child_modules[].resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.website_endpoint')
+  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.root_module.child_modules[].child_modules[].resources[] | select(.address == "aws_s3_bucket.website_bucket") | .values.website_endpoint')
   readonly CYPRESS_BASE_URL="http://$WEBSITE_URL"
   export CYPRESS_BASE_URL
 
