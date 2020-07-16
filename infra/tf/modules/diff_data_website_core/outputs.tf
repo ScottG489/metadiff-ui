@@ -1,7 +1,7 @@
 output "r53_zone_name" {
-  value = module.helpers_s3_website_route53_zone.name
+  value = aws_route53_zone.r53_zone.name
 }
 
 output "r53_zone_name_servers" {
-  value = module.helpers_s3_website_route53_zone.nameservers
+  value = aws_route53_zone.r53_zone.name_servers
 }
