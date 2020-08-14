@@ -1,16 +1,6 @@
 # Diff Info Service UI
 ![CI](https://github.com/ScottG489/diff-info-service-ui/workflows/CI/badge.svg)
 
-## Building and deploying
-You will need valid credentials to clone the repository and to deploy to AWS on S3
-
-Here is an example of how to run after you've build the image
-```bash
-ID_RSA_CONTENTS_BASE64=$(base64 id_rsa) ;
-AWS_CREDENTIALS_CONTENTS_BASE64=$(base64 credentials) ;
-curl --data-binary '{"ID_RSA": "'"$ID_RSA_CONTENTS_BASE64"'", "AWS_CREDENTIALS": "'"$AWS_CREDENTIALS_CONTENTS_BASE64"'"}' 'https://<DOCKER CI INSTANCE URL>/build?image=scottg489/diff-info-service-ui-build:latest'
-```
-
 ## Development
 Here is an example of developing the build in conjunction with the application locally.
 Make sure you change the file locations of the desired secrets to your actual location.
@@ -18,8 +8,8 @@ Make sure you change the file locations of the desired secrets to your actual lo
 ```bash
 ID_RSA_CONTENTS_BASE64=$(base64 ~/.ssh/id_rsa | tr -d '\n') ;
 AWS_CREDENTIALS_CONTENTS_BASE64=$(base64 ~/.aws/credentials | tr -d '\n') ;
-docker build infra/build -t foobar && \
-docker run -it --volume "$PWD:/opt/build/diff-info-service-ui" foobar '{"ID_RSA": "'"$ID_RSA_CONTENTS_BASE64"'", "AWS_CREDENTIALS": "'"$AWS_CREDENTIALS_CONTENTS_BASE64"'"}'
+docker build infra/build -t app-test
+docker run -it --volume "$PWD:/opt/build/diff-info-service-ui" app-test '{"ID_RSA": "'"$ID_RSA_CONTENTS_BASE64"'", "AWS_CREDENTIALS": "'"$AWS_CREDENTIALS_CONTENTS_BASE64"'"}'
 ```
 
 1. Initialize the secrets as envars (these will be passed in as the arguments to the container)
@@ -27,3 +17,4 @@ docker run -it --volume "$PWD:/opt/build/diff-info-service-ui" foobar '{"ID_RSA"
 3. Run the image with the path to your local repository mounted where the code would normally be cloned to
 
 Note that you'll need to comment out the `git clone` in the build otherwise it will fail since you've mounted a directory there
+You'll also want to comment out the prod deploy steps (everything after `run-test.sh` is run)
