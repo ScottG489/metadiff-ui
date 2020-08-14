@@ -23,11 +23,13 @@ build_package_application() {
   readonly ROOT_DIR=$(get_git_root_dir)
   cd "$ROOT_DIR"
 
-  npm install
+  npm ci
 
   # Build and package front-end
-  CI=true npm run test
+  export CI=true
+  npm run test
   npm run build
+  unset CI
 }
 
 tf_backend_init() {
