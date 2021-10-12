@@ -9,7 +9,7 @@ Make sure you change the file locations of the desired secrets to your actual lo
 ID_RSA_CONTENTS_BASE64=$(base64 ~/.ssh/id_rsa | tr -d '\n') ;
 AWS_CREDENTIALS_CONTENTS_BASE64=$(base64 ~/.aws/credentials | tr -d '\n') ;
 docker build infra/build -t app-test
-docker run -it --volume "$PWD:/opt/build/diff-info-service-ui" app-test '{"ID_RSA": "'"$ID_RSA_CONTENTS_BASE64"'", "AWS_CREDENTIALS": "'"$AWS_CREDENTIALS_CONTENTS_BASE64"'"}'
+docker run -it --volume "$PWD:/home/build-user/build/diff-info-service-ui" app-test '{"ID_RSA": "'"$ID_RSA_CONTENTS_BASE64"'", "AWS_CREDENTIALS": "'"$AWS_CREDENTIALS_CONTENTS_BASE64"'"}'
 ```
 
 1. Initialize the secrets as envars (these will be passed in as the arguments to the container)

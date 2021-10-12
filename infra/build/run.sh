@@ -1,7 +1,7 @@
 #!/bin/bash
 set -ex
 
-source /opt/build/build_functions.sh
+source /home/build-user/build/build_functions.sh
 
 set +x
 setup_credentials "$1"
@@ -17,7 +17,7 @@ cd $_PROJECT_NAME
 
 build_package_application
 
-/opt/build/run-test.sh
+/home/build-user/build/run-test.sh
 
 tf_backend_init $_TFSTATE_BUCKET_NAME
 
