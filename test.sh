@@ -58,5 +58,5 @@ find . -name '.terraform' -type d -prune -exec rm -rf {} \;
 docker build infra/build -t app-test && \
 docker run -it \
   --runtime=sysbox-runc \
-  --volume "$PWD:/home/build-user/build/diff-info-service-ui" \
+  --volume "$PWD:/home/build-user/build/metadiff-ui" \
   app-test "$JSON_BODY"

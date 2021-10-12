@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-readonly IMAGE_NAME='scottg489/diff-info-service-ui-build:latest'
+readonly IMAGE_NAME='scottg489/metadiff-ui-build:latest'
 readonly ID_RSA=$1
 readonly AWS_CREDENTIALS=$2
 
