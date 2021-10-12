@@ -10,7 +10,7 @@ set -x
 declare -r _PROJECT_NAME='diff-info-service-ui'
 declare -r _GIT_REPO='git@github.com:ScottG489/diff-info-service-ui.git'
 # Used for the domain name but also the s3 bucket (AWS requires them to be the same)
-declare -r _TFSTATE_BUCKET_NAME='tfstate-diff-data.com'
+declare -r _TFSTATE_BUCKET_NAME='tfstate-metadiff.com'
 
 git clone $_GIT_REPO
 cd $_PROJECT_NAME

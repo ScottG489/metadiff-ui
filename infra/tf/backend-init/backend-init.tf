@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "backend_bucket" {
-  bucket = "tfstate-diff-data.com"
+  bucket = "tfstate-metadiff.com"
   force_destroy = true
 
   versioning {

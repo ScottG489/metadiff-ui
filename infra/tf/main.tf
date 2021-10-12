@@ -4,8 +4,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "tfstate-diff-data.com"
-    key    = "diff-data.com.tfstate"
+    bucket = "tfstate-metadiff.com"
+    key    = "metadiff.com.tfstate"
     region = "us-west-2"
   }
 }
