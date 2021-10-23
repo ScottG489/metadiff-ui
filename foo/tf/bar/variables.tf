@@ -1,0 +1,1 @@
+variable "website_name" {}
