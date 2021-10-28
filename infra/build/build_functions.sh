@@ -93,7 +93,7 @@ run_tests() {
 
   cd "$ROOT_DIR/$RELATIVE_PATH_TO_TF_DIR"
 
-  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.outputs.bucket_website_endpoint.value')
+  readonly WEBSITE_URL=$(terraform show --json | jq --raw-output '.values.outputs.cf_dist_domain_name.value')
   [[ -n $WEBSITE_URL ]]
   readonly CYPRESS_BASE_URL="http://$WEBSITE_URL"
   export CYPRESS_BASE_URL
