@@ -79,7 +79,7 @@ ui_deploy() {
 
   cd "$ROOT_DIR"
 
-  aws s3 sync build/ s3://"$BUCKET_NAME"
+  aws s3 sync --delete build/ s3://"$BUCKET_NAME"
 }
 
 run_tests() {
