@@ -27,7 +27,6 @@ yarn-error.log*
 
 # cypress
 cypress/plugins/
-cypress/support/
 cypress/videos/
 
 # Terraform (Taken from https://raw.githubusercontent.com/github/gitignore/master/Terraform.gitignore)
