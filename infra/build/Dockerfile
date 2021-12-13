@@ -3,7 +3,6 @@ FROM ubuntu:20.04
 RUN apt-get update && \
   DEBIAN_FRONTEND=noninteractive apt-get install -y \
   git \
-  npm \
   awscli \
   jq \
   curl \
@@ -24,11 +23,17 @@ RUN curl https://releases.hashicorp.com/terraform/0.12.26/terraform_0.12.26_linu
   unzip -d /usr/local/bin /tmp/terraform.zip && \
   rm /tmp/terraform.zip
 
-# Necessary due to "Error: write after end" bug. Remove once this has been fixed (seems to be issue with npm)
-RUN npm install -g npm
-
 RUN useradd -m -u 1000 -s /usr/bin/bash build-user
 USER build-user
+
+ENV NVM_DIR /home/build-user/.nvm
+ENV NODE_VERSION 16.13.1
+
+# Install nvm with node and npm
+RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+RUN . $NVM_DIR/nvm.sh \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
 RUN mkdir /home/build-user/.ssh
 COPY known_hosts /home/build-user/.ssh/known_hosts

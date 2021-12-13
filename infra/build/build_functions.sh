@@ -23,6 +23,9 @@ build_package_application() {
   readonly ROOT_DIR=$(get_git_root_dir)
   cd "$ROOT_DIR"
 
+  set +x
+  . "$NVM_DIR/nvm.sh"
+  set -x
   npm ci
 
   # Build and package front-end
