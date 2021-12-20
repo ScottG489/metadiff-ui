@@ -28,6 +28,10 @@ module "route53_domain_name_servers" {
 }
 
 resource "aws_cloudfront_distribution" "cloudfront_dist" {
+  // We must wait for the certificate to be valid before creating the CF distribution
+  depends_on = [
+    aws_acm_certificate_validation.cert_validation
+  ]
   default_root_object            = "index.html"
   enabled                        = true
   is_ipv6_enabled     = true
