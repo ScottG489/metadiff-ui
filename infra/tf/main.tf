@@ -76,8 +76,7 @@ resource "aws_acm_certificate" "acm_cert" {
   validation_method = "DNS"
 
   subject_alternative_names = [
-    var.website_domain_name,
-    "www.${var.website_domain_name}",
+    "www.${var.website_domain_name}"
   ]
 }
 
