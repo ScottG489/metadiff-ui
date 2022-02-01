@@ -58,8 +58,8 @@ const App = () => {
           body: postData,
         },
       )
-      const diffInfo: DiffInfo = await response.json()
-      updateDiffInfo(diffInfo)
+      const diffInfo: DiffInfo[] = await response.json()
+      updateDiffInfo(diffInfo[0])
     } catch (e) {
       console.log(`Failure fetching diff info with diff input: ${e.message}`)
     }
