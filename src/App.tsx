@@ -17,7 +17,7 @@ const init: DiffInfoFormStore = {
     ' *.iml\n' +
     ' *.ipr\n' +
     ' *.iws',
-  diffInfo: {
+  diffInfos: [{
     toFile: '',
     fromFile: '',
     fileStatus: '',
@@ -34,15 +34,15 @@ const init: DiffInfoFormStore = {
     similarityIndex: '',
     disimilarityIndex: '',
     rawDiff: '',
-  },
+  }],
 }
 
 const App = () => {
-  const [diffInfo, setDiffInfo] = useState(init.diffInfo)
+  const [diffInfos, setDiffInfos] = useState(init.diffInfos)
   const [diffInputText, setDiffInput] = useState(init.diffInputText)
 
-  const updateDiffInfo = (s: DiffInfo) => {
-    setDiffInfo(s)
+  const updateDiffInfo = (diffInfos: DiffInfo[]) => {
+    setDiffInfos(diffInfos)
   }
 
   const updateDiffInput = (s: string) => {
@@ -58,11 +58,22 @@ const App = () => {
           body: postData,
         },
       )
-      const diffInfo: DiffInfo[] = await response.json()
-      updateDiffInfo(diffInfo[0])
+      const diffInfos: DiffInfo[] = await response.json()
+      updateDiffInfo(diffInfos)
     } catch (e) {
       console.log(`Failure fetching diff info with diff input: ${e.message}`)
     }
+  }
+
+  const displayDiffInfos = (diffInfos: DiffInfo[]) => {
+    return diffInfos.map(diffInfo => {
+      return <div className="row">
+        <div className="col">
+          <DiffInfoComponent diffInfo={diffInfo} />
+          <hr/>
+        </div>
+      </div>
+    })
   }
 
   return (
@@ -81,11 +92,7 @@ const App = () => {
           />
         </div>
       </div>
-      <div className="row">
-        <div className="col">
-          <DiffInfoComponent diffInfo={diffInfo} />
-        </div>
-      </div>
+      {displayDiffInfos(diffInfos)}
     </div>
   )
 }

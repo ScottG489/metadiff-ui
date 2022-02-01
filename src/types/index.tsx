@@ -1,6 +1,6 @@
 export interface DiffInfoFormStore {
   diffInputText: string;
-  diffInfo: DiffInfo;
+  diffInfos: DiffInfo[];
 }
 
 export interface DiffInfo {
