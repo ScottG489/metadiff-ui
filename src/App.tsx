@@ -79,8 +79,8 @@ const App = () => {
   }
 
   const displayDiffInfos = (diffInfos: DiffInfo[]) => {
-    return diffInfos.map(diffInfo => {
-      return <div className="row">
+    return diffInfos.map((diffInfo, i) => {
+      return <div className="row" key={i}>
         <div className="col">
           <DiffInfoComponent diffInfo={diffInfo} />
           <hr/>
