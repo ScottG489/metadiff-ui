@@ -30,6 +30,7 @@ build_package_application() {
 
   # Build and package front-end
   export CI=true
+  npm run lint
   npm run test
   npm run build
   unset CI
