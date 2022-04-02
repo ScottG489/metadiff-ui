@@ -8,9 +8,9 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard',
-    "plugin:testing-library/recommended",
-    "plugin:testing-library/react",
-    "plugin:cypress/recommended",
+    'plugin:testing-library/recommended',
+    'plugin:testing-library/react',
+    'plugin:cypress/recommended',
   ],
   globals: {
     Atomics: 'readonly',
