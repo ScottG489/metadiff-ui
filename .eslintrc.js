@@ -31,6 +31,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library', 'cypress'],
   rules: {
+    'no-use-before-define': 'off',
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'comma-dangle': ['error', 'always-multiline'],
