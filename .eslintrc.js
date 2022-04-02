@@ -8,7 +8,7 @@ module.exports = {
   extends: [
     'plugin:react/recommended',
     'standard',
-    'plugin:testing-library/recommended',
+    'plugin:testing-library/dom',
     'plugin:testing-library/react',
     'plugin:cypress/recommended',
   ],

@@ -41,6 +41,5 @@ test('Displays appropriate values', async () => {
   expect(screen.getByRole('row', { name: 'Is Copied File: is copied value' }))
   expect(screen.getByRole('row', { name: 'Similarity Index: similarity index value' }))
   expect(screen.getByRole('row', { name: 'Disimilarity Index: disimilarity index value' }))
-  // TODO: Better way to do this? Maybe the HTML shouldn't be a disabled text area?
-  expect(screen.getByRole('heading', { name: 'Raw Diff:' }).nextSibling).toHaveTextContent('raw diff value')
+  expect(screen.getByRole('textbox')).toHaveTextContent('raw diff value')
 })
