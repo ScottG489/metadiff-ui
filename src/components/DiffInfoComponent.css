@@ -1,3 +1,5 @@
 td:first-child {
     font-weight: bold;
 }
+
+textarea{font-family:monospace;}
