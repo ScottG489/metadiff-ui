@@ -16,7 +16,20 @@ const init: DiffInfoFormStore = {
     '+.idea/\n' +
     ' *.iml\n' +
     ' *.ipr\n' +
-    ' *.iws',
+    ' *.iws\n' +
+    '\n' +
+    'diff --git a/src/main/resources/banner.txt b/src/main/resources/banner.txt\n' +
+    'new file mode 100644\n' +
+    'index 0000000..8c7c559\n' +
+    '--- /dev/null\n' +
+    '+++ b/src/main/resources/banner.txt\n' +
+    '@@ -0,0 +1,6 @@\n' +
+    '+   ____                _       _\n' +
+    '+  / ___|___  _ __     | | ___ | |__\n' +
+    '+ | |   / _ \\| \'_ \\ _  | |/ _ \\| \'_ \n' +
+    '+ | |__| (_) | | | | |_| | (_) | |_) |\n' +
+    '+  \\____\\___/|_| |_|\\___/ \\___/|_.__/\n' +
+    '+\n',
   diffInfos: [{
     toFile: '',
     fromFile: '',
