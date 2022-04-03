@@ -1,14 +1,18 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 4.8.0"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "~> 3.1.1"
+    }
+  }
+}
+
 provider "aws" {
   region = "us-west-2"
-  version = "~> 4.8.0"
-}
-
-provider "null" {
-  version = "~> 3.1.1"
-}
-
-provider "random" {
-  version = "~> 3.1.2"
 }
 
 module "helpers_s3_website" {
