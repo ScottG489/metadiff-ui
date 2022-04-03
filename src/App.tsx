@@ -73,7 +73,7 @@ const App = () => {
       )
       const diffInfos: DiffInfo[] = await response.json()
       updateDiffInfo(diffInfos)
-    } catch (e) {
+    } catch (e: any) {
       console.log(`Failure fetching diff info with diff input: ${e.message}`)
     }
   }
