@@ -30,6 +30,7 @@ build_package_application() {
 
   # Build and package front-end
   export CI=true
+  npx npm-check-updates --errorLevel 2
   npm run lint
   npm audit --production
   npm run test
