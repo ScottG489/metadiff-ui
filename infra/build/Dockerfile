@@ -27,7 +27,7 @@ RUN useradd -m -u 1000 -s /usr/bin/bash build-user
 USER build-user
 
 ENV NVM_DIR /home/build-user/.nvm
-ENV NODE_VERSION 16.13.1
+ENV NODE_VERSION 16.14.2
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
