@@ -23,12 +23,16 @@ build_package_application() {
   readonly ROOT_DIR=$(get_git_root_dir)
   cd "$ROOT_DIR"
 
-  terraform version | ( ! grep -A 99 'Your version of Terraform is out of date' )
-  hadolint --failure-threshold warning infra/build/Dockerfile
-
   set +x
   . "$NVM_DIR/nvm.sh"
   set -x
+
+  [[ $(terraform version -json | jq --raw-output '.terraform_outdated') == "false" ]]
+  [[ $(node -v | sed 's/^v//') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=nodejs' | jq --raw-output '.items[].stable_versions[0]') ]]
+  [[ $(hadolint --version | awk '{print $4}') == $(curl -sL 'https://release-monitoring.org/api/v2/projects?name=hadolint' | jq --raw-output '.items[].stable_versions[0]') ]]
+
+  hadolint --failure-threshold warning infra/build/Dockerfile
+
   npm ci
 
   # Build and package front-end
