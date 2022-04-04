@@ -23,6 +23,8 @@ build_package_application() {
   readonly ROOT_DIR=$(get_git_root_dir)
   cd "$ROOT_DIR"
 
+  terraform version | ( ! grep -A 99 'Your version of Terraform is out of date' )
+
   set +x
   . "$NVM_DIR/nvm.sh"
   set -x
