@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 RUN apt-get update && \
-  DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
   git \
   awscli \
   jq \
@@ -17,7 +17,9 @@ RUN apt-get update && \
   libasound2 \
   libxtst6 \
   xauth \
-  xvfb
+  xvfb \
+   && apt-get clean \
+   && rm -rf /var/lib/apt/lists/*
 
 ARG TERRAFORM_VERSION=1.1.7
 RUN curl https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/terraform.zip && \
@@ -32,6 +34,7 @@ ENV NODE_VERSION $NODE_VERSION
 ENV NVM_DIR /home/build-user/.nvm
 
 # Install nvm with node and npm
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 RUN . $NVM_DIR/nvm.sh \
     && nvm alias default $NODE_VERSION \
