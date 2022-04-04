@@ -52,7 +52,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-standard": "^4.1.0",
-    "eslint-plugin-testing-library": "^5.2.0",
+    "eslint-plugin-testing-library": "^5.2.1",
     "npm-check-updates": "^12.5.7",
     "prettier": "^2.6.2",
     "react-scripts": "^5.0.0"
