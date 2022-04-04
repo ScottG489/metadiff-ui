@@ -24,6 +24,7 @@ build_package_application() {
   cd "$ROOT_DIR"
 
   terraform version | ( ! grep -A 99 'Your version of Terraform is out of date' )
+  hadolint --failure-threshold warning infra/build/Dockerfile
 
   set +x
   . "$NVM_DIR/nvm.sh"
