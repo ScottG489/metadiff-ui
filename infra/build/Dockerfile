@@ -19,15 +19,17 @@ RUN apt-get update && \
   xauth \
   xvfb
 
-RUN curl https://releases.hashicorp.com/terraform/1.1.7/terraform_1.1.7_linux_amd64.zip -o /tmp/terraform.zip && \
+ARG TERRAFORM_VERSION=1.1.7
+RUN curl https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/terraform.zip && \
   unzip -d /usr/local/bin /tmp/terraform.zip && \
   rm /tmp/terraform.zip
 
 RUN useradd -m -u 1000 -s /usr/bin/bash build-user
 USER build-user
 
+ARG NODE_VERSION=17.8.0
+ENV NODE_VERSION $NODE_VERSION
 ENV NVM_DIR /home/build-user/.nvm
-ENV NODE_VERSION 17.8.0
 
 # Install nvm with node and npm
 RUN curl https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
