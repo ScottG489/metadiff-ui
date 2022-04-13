@@ -33,13 +33,14 @@ build_package_application() {
 
   hadolint --failure-threshold warning infra/build/Dockerfile
 
-  npm ci
-
   # Build and package front-end
   export CI=true
+  npm ci
+  
   npx npm-check-updates --errorLevel 2
   npm run lint
   npm audit --production
+
   npm run test
   npm run build
   unset CI
