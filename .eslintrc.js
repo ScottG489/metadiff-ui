@@ -1,40 +1,32 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
-    node: true,
     jest: true,
+    es2021: true
   },
   extends: [
     'plugin:react/recommended',
-    'standard',
-    'plugin:testing-library/dom',
-    'plugin:testing-library/react',
     'plugin:cypress/recommended',
+    'standard'
   ],
-  globals: {
-    Atomics: 'readonly',
-    SharedArrayBuffer: 'readonly',
-  },
   parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2018,
-    sourceType: 'module',
-  },
   settings: {
     react: {
       version: 'detect',
+    }
+  },
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true
     },
+    ecmaVersion: 'latest',
+    sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier', 'testing-library', 'cypress'],
+  plugins: [
+    'react',
+    '@typescript-eslint'
+  ],
   rules: {
-    'no-use-before-define': 'off',
-    'no-unused-vars': 'off',
-    '@typescript-eslint/no-unused-vars': ['error'],
-    'comma-dangle': ['error', 'always-multiline'],
-    quotes: ['error', 'single'],
-  },
+    'no-use-before-define': 'off'
+  }
 }
