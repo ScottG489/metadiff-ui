@@ -10,7 +10,7 @@ interface DiffInputProps {
 const DiffInputComponent: FC<DiffInputProps> = ({
   diffInput,
   updateDiffInput,
-  fetchDiffInfo,
+  fetchDiffInfo
 }: DiffInputProps) => {
   const baseSubmitButtonText = 'Yeet'
   const [submitButtonText, setSubmitButtonText] = useState(baseSubmitButtonText)

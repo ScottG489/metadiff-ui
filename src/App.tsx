@@ -46,8 +46,8 @@ const init: DiffInfoFormStore = {
     copied: '',
     similarityIndex: '',
     disimilarityIndex: '',
-    rawDiff: '',
-  }],
+    rawDiff: ''
+  }]
 }
 
 const App = () => {
@@ -68,8 +68,8 @@ const App = () => {
         'https://api.conjob.io/job/run?image=scottg489/metadiff:latest',
         {
           method: 'POST',
-          body: postData,
-        },
+          body: postData
+        }
       )
       const diffInfos: DiffInfo[] = await response.json()
       updateDiffInfo(diffInfos)

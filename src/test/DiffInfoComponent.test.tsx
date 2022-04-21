@@ -21,7 +21,7 @@ test('Displays appropriate values', async () => {
     copied: 'is copied value',
     similarityIndex: 'similarity index value',
     disimilarityIndex: 'disimilarity index value',
-    rawDiff: 'raw diff value',
+    rawDiff: 'raw diff value'
   }
 
   render(<DiffInfoComponent diffInfo={diffInfo}/>)

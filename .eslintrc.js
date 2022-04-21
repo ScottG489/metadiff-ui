@@ -12,7 +12,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   settings: {
     react: {
-      version: 'detect',
+      version: 'detect'
     }
   },
   parserOptions: {

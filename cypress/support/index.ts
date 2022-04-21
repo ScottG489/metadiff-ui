@@ -3,7 +3,7 @@ describe('Once before all tests', () => {
     cy.request({
       url: Cypress.env('backendUrl'),
       timeout: 180000, // 3 minutes in ms
-      failOnStatusCode: false,
+      failOnStatusCode: false
     })
   })
 })
