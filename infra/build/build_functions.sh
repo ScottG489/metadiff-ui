@@ -40,7 +40,7 @@ build_package_application() {
   npm ci
 
   npm run lint
-  npm audit --production
+  npm audit --omit=dev
 
   npm run test
   npm run build
