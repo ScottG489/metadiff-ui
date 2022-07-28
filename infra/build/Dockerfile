@@ -23,7 +23,7 @@ RUN apt-get update && \
    && apt-get clean \
    && rm -rf /var/lib/apt/lists/*
 
-ARG TERRAFORM_VERSION=1.2.5
+ARG TERRAFORM_VERSION=1.2.6
 RUN curl https://releases.hashicorp.com/terraform/$TERRAFORM_VERSION/terraform_${TERRAFORM_VERSION}_linux_amd64.zip -o /tmp/terraform.zip && \
   unzip -d /usr/local/bin /tmp/terraform.zip && \
   rm /tmp/terraform.zip
@@ -36,7 +36,7 @@ RUN curl -L https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VE
 RUN useradd -m -u 1000 -s /usr/bin/bash build-user
 USER build-user
 
-ARG NODE_VERSION=18.5.0
+ARG NODE_VERSION=18.7.0
 ENV NODE_VERSION $NODE_VERSION
 ENV NVM_DIR /home/build-user/.nvm
 
