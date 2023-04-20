@@ -17,7 +17,7 @@ provider "aws" {
 
 module "helpers_s3_website" {
   source  = "ScottG489/helpers/aws//modules/s3_website"
-  version = "1.3.2"
+  version = "1.4.0"
   name = var.website_domain_name
   subdomain_redirect_protocol = "https"
 }
