@@ -8,6 +8,7 @@ readonly AWS_CREDENTIALS=$3
 read -r -d '' JSON_BODY <<- EOM
   {
   "RUN_TASK": "$RUN_TASK",
+  "GIT_BRANCH": "${GITHUB_HEAD_REF:-$GITHUB_REF_NAME}",
   "ID_RSA": "$ID_RSA",
   "AWS_CREDENTIALS": "$AWS_CREDENTIALS"
   }
