@@ -28,7 +28,7 @@ resource "aws_route53_zone" "r53_zone" {
 
 module "helpers_s3_website_route53_records" {
   source = "ScottG489/helpers/aws//modules/s3_website_route53_records"
-  version = "0.1.8"
+  version = "0.1.12"
   route53_zone_id = aws_route53_zone.r53_zone.id
   s3_website_hosted_zone_id = var.cf_hosted_zone_id
   s3_website_record_alias_name = var.cf_domain_name
