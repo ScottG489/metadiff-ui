@@ -5,7 +5,7 @@
   "dependencies": {
     "@types/bootstrap": "^5.2.3",
     "@types/jquery": "^3.5.14",
-    "@types/node": "18.7.15",
+    "@types/node": "18.19.130",
     "@types/react": "^18.0.18",
     "@types/react-dom": "^18.0.6",
     "bootstrap": "^5.2.0",
