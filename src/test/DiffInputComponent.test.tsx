@@ -2,13 +2,14 @@ import React from 'react'
 import { render, screen } from '@testing-library/react'
 import '@testing-library/jest-dom'
 import userEvent from '@testing-library/user-event'
+import { vi } from 'vitest'
 import DiffInputComponent from '../components/DiffInputComponent'
 
 test('renders text area with initial diff input text', async () => {
   const diffInputText: string = 'original text'
 
-  const updateDiffInput = jest.fn()
-  const fetchDiffInfo = jest.fn()
+  const updateDiffInput = vi.fn()
+  const fetchDiffInfo = vi.fn()
 
   render(<DiffInputComponent
     diffInput={diffInputText}
@@ -25,8 +26,8 @@ test('renders text area with initial diff input text', async () => {
 test('calls updateDiffInput callback every time the diff input text changes', async () => {
   const diffInputText: string = 'original text'
 
-  const updateDiffInput = jest.fn()
-  const fetchDiffInfo = jest.fn()
+  const updateDiffInput = vi.fn()
+  const fetchDiffInfo = vi.fn()
 
   render(<DiffInputComponent
     diffInput={diffInputText}
@@ -46,8 +47,8 @@ test('calls updateDiffInput callback every time the diff input text changes', as
 test('calls fetchDiffInfo callback when the form is submitted', async () => {
   const diffInputText: string = 'original text'
 
-  const updateDiffInput = jest.fn()
-  const fetchDiffInfo = jest.fn()
+  const updateDiffInput = vi.fn()
+  const fetchDiffInfo = vi.fn()
 
   render(<DiffInputComponent
     diffInput={diffInputText}
