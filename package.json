@@ -39,8 +39,8 @@
   "devDependencies": {
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.0.0",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/node": "^20.19.0",
     "@typescript-eslint/eslint-plugin": "^8.46.4",
