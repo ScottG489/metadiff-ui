@@ -21,7 +21,7 @@ build_package_application
 
 /home/build-user/build/run-test.sh
 
-if [ "$_RUN_TASK" != "deploy" ]; then exit 0; fi
+[ "$_RUN_TASK" != "deploy" ] && exit 0
 tf_backend_init $_TFSTATE_BUCKET_NAME
 
 tf_apply "infra/tf"
