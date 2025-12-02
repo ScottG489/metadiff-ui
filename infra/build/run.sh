@@ -14,7 +14,7 @@ declare -r _TFSTATE_BUCKET_NAME='tfstate-metadiff.com'
 declare -r _RUN_TASK=$(jq -r .RUN_TASK <<< "$1")
 declare -r _GIT_BRANCH=$(jq -r .GIT_BRANCH <<< "$1")
 
-git clone --branch $_GIT_BRANCH $_GIT_REPO
+[ -d "$_PROJECT_NAME" ] || git clone --branch $_GIT_BRANCH $_GIT_REPO
 cd $_PROJECT_NAME
 
 build_package_application
