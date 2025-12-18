@@ -62,7 +62,7 @@
     "jsdom": "27.3.0",
     "npm-check-updates": "19.2.0",
     "prettier": "3.7.4",
-    "vite": "7.2.7",
+    "vite": "7.3.0",
     "vite-tsconfig-paths": "5.1.4",
     "vitest": "4.0.15"
   }
