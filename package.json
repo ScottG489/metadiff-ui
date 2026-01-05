@@ -60,7 +60,7 @@
     "eslint-plugin-standard": "5.0.0",
     "eslint-plugin-testing-library": "5.11.1",
     "jsdom": "27.4.0",
-    "npm-check-updates": "19.2.0",
+    "npm-check-updates": "19.2.1",
     "prettier": "3.7.4",
     "vite": "7.3.0",
     "vite-tsconfig-paths": "6.0.3",
