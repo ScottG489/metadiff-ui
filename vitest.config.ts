@@ -6,7 +6,6 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     globals: true,
-    environment: 'jsdom',
-    css: true
+    environment: 'jsdom'
   }
 })
