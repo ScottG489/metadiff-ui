@@ -4,7 +4,7 @@ export default defineConfig({
   defaultCommandTimeout: 30000,
   env: {
     backendUrl:
-      'https://api.conjob.io/job/run?image=scottg489/metadiff:latest'
+      'https://api.conjob.io/job/run?image=scottg489/metadiff:latest&remove=true'
   },
   e2e: {
     setupNodeEvents (on, config) {},

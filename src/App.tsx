@@ -65,7 +65,7 @@ const App = () => {
   async function fetchDiffInfo (postData: string) {
     try {
       const response = await fetch(
-        'https://api.conjob.io/job/run?image=scottg489/metadiff:latest',
+        'https://api.conjob.io/job/run?image=scottg489/metadiff:latest&remove=true',
         {
           method: 'POST',
           body: postData
