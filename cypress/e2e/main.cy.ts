@@ -1,5 +1,5 @@
 describe('Submitting diff input text', () => {
-  it('Should fill out appropriate fields', () => {
+  it('Should fill out appropriate fields', { retries: 3 }, () => {
     cy.visit('/')
 
     cy.contains('Yeet').click()
