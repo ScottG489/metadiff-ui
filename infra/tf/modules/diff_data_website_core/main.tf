@@ -3,9 +3,9 @@ provider "aws" {
 }
 
 module "helpers_s3_website" {
-  source  = "ScottG489/helpers/aws//modules/s3_website"
-  version = "1.5.0"
-  name = var.website_domain_name
+  source                      = "ScottG489/helpers/aws//modules/s3_website"
+  version                     = "1.5.0"
+  name                        = var.website_domain_name
   subdomain_redirect_protocol = "https"
 }
 
@@ -14,9 +14,9 @@ resource "aws_route53_zone" "r53_zone" {
 }
 
 module "helpers_s3_website_route53_records" {
-  source = "ScottG489/helpers/aws//modules/s3_website_route53_records"
-  version = "1.5.0"
-  route53_zone_id = aws_route53_zone.r53_zone.id
-  s3_website_hosted_zone_id = var.cf_hosted_zone_id
+  source                       = "ScottG489/helpers/aws//modules/s3_website_route53_records"
+  version                      = "1.5.0"
+  route53_zone_id              = aws_route53_zone.r53_zone.id
+  s3_website_hosted_zone_id    = var.cf_hosted_zone_id
   s3_website_record_alias_name = var.cf_domain_name
 }
