@@ -46,7 +46,7 @@
     "@typescript-eslint/eslint-plugin": "8.60.0",
     "@typescript-eslint/parser": "8.60.0",
     "@vitejs/plugin-react": "6.0.2",
-    "@vitest/ui": "4.1.7",
+    "@vitest/ui": "4.1.8",
     "cypress": "15.16.0",
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
@@ -63,6 +63,6 @@
     "prettier": "3.8.3",
     "vite": "8.0.16",
     "vite-tsconfig-paths": "6.1.1",
-    "vitest": "4.1.7"
+    "vitest": "4.1.8"
   }
 }
