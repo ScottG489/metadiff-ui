@@ -47,7 +47,7 @@
     "@typescript-eslint/parser": "8.62.0",
     "@vitejs/plugin-react": "6.0.2",
     "@vitest/ui": "4.1.9",
-    "cypress": "15.17.0",
+    "cypress": "15.18.0",
     "eslint": "8.57.1",
     "eslint-config-standard": "17.1.0",
     "eslint-plugin-cypress": "2.15.2",
